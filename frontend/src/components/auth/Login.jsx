@@ -101,7 +101,7 @@ const Login = () => {
                                     className="cursor-pointer"
                                     required
                                 />
-                                <Label htmlFor="r1">Student</Label>
+                                <Label htmlFor="r1">Applicant</Label>
                             </div>
                             <div className="flex items-center space-x-2">
                                 <Input

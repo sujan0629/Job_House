@@ -9,6 +9,7 @@ import { JOB_API_END_POINT } from '@/utils/constant'
 import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
 import { Loader2 } from 'lucide-react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const PostJob = () => {
     const [input, setInput] = useState({
@@ -58,7 +59,10 @@ const PostJob = () => {
             if (res.data.success) {
                 toast.success(res.data.message);
                 navigate("/admin/jobs");
+                return;
             }
+            
+            setFormError(error.response?.data?.message || "An error occurred while posting the job.");
         } catch (error) {
             setFormError(error.response?.data?.message || "An error occurred while posting the job.");
         } finally {

@@ -30,6 +30,10 @@ export const registerCompany = async (req, res) => {
         })
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            message: "Server Error",
+            success: false
+        })
     }
 }
 export const getCompany = async (req, res) => {
@@ -48,6 +52,10 @@ export const getCompany = async (req, res) => {
         })
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            message: "Server Error",
+            success: false
+        })
     }
 }
 // get company by id
@@ -67,6 +75,10 @@ export const getCompanyById = async (req, res) => {
         })
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            message: "Server Error",
+            success: false
+        })
     }
 }
 export const updateCompany = async (req, res) => {
@@ -75,6 +87,10 @@ export const updateCompany = async (req, res) => {
  
         const file = req.file;
         // idhar cloudinary ayega
+        if(!file) return res.status(400).json({
+            message: "Picture not uploaded",
+            success: false
+        })
         const fileUri = getDataUri(file);
         const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
         const logo = cloudResponse.secure_url;
@@ -96,5 +112,9 @@ export const updateCompany = async (req, res) => {
 
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            message: "Server Error",
+            success: false
+        })
     }
 }
